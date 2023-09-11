@@ -3,7 +3,6 @@
 import json
 import sys
 
-
 with open('emojis.json') as f:
 	data = json.load(f)
 
