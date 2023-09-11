@@ -1,0 +1,19 @@
+#!/usr/bin/python3
+
+import random
+import json
+import sys
+
+
+with open('emojis.json') as f:
+	data = json.load(f)
+
+emojis = data.get('emojis', '💔')
+
+commit_msg_filepath = sys.argv[1]
+
+with open(commit_msg_filepath, 'r+') as f:
+	content = f.read()
+	f.seek(0, 0)
+
+	f.write(f'{random.choice(emojis)} {content}')

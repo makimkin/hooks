@@ -1,0 +1,19 @@
+#!/usr/bin/python3
+
+import json
+import sys
+
+
+with open('emojis.json') as f:
+	data = json.load(f)
+
+emojis = data.get('emojis', '💔')
+
+commit_msg_filepath = sys.argv[1]
+
+with open(commit_msg_filepath, 'r') as f:
+	content = f.read()
+
+	if content[0] not in emojis:
+		print(f'ERROR! The commit message must start with an Emoji from the list: {emojis}')
+		sys.exit(1)
