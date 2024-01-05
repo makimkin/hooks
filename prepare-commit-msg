@@ -1,19 +1,27 @@
 #!/usr/bin/python3
 
-import random
 import json
 import sys
 
 
-with open('.git/hooks/emojis.json') as f:
-	data = json.load(f)
-
-emojis = data.get('emojis', '💔')
+with open(".git/hooks/emojis.json") as f:
+    data = json.load(f)
 
 commit_msg_filepath = sys.argv[1]
 
-with open(commit_msg_filepath, 'r+') as f:
-	content = f.read()
-	f.seek(0, 0)
+with open(commit_msg_filepath, "r+") as f:
+    content = f.read()
 
-	f.write(f'{random.choice(emojis)} {content}')
+    try:
+        prefix = content.split(":")[0]
+
+        if prefix not in data.keys():
+            print(f"Unknown prefix: {prefix}")
+            sys.exit(1)
+
+        f.seek(0, 0)
+
+        f.write(f"{data[prefix]} {content}")
+    except Exception as e:
+        print(f"Error: {e}")
+        sys.exit(1)
