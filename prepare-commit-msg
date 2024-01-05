@@ -4,7 +4,7 @@ import json
 import sys
 
 
-with open(".git/hooks/emojis.json") as f:
+with open(".git/hooks/data.json") as f:
     data = json.load(f)
 
 commit_msg_filepath = sys.argv[1]
