@@ -1,9 +1,8 @@
 {
     "new": "🐙",
     "refacto": "🐼",
-    "fix": "🐶",
-    "feat": "🦁",
     "style": "🐰",
     "data": "📀",
-    "rework": "🐵"
+    "rework": "🐵",
+    "merge": "🎢"
 }
