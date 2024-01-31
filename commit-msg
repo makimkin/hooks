@@ -4,16 +4,22 @@ import json
 import sys
 
 
-with open('.git/hooks/data.json') as f:
-	data = json.load(f)
+with open(".git/hooks/data.json") as f:
+    data = json.load(f)
 
 emojis = [*data.values()]
+prefixes = [*data.values()]
 
 commit_msg_filepath = sys.argv[1]
 
-with open(commit_msg_filepath, 'r') as f:
-	content = f.read()
+with open(commit_msg_filepath, "r") as f:
+    content = f.read()
 
-	if content[0] not in emojis:
-		print(f'ERROR! The commit message must start with an Emoji from the list: {emojis}')
-		sys.exit(1)
+    if content[0] not in emojis:
+        print(
+            f"You entered a wrong message for the commit: {content}\n"
+            f"The commit message must satisfy:\n"
+            f"* Start with an Emoji from the list: {emojis}\n"
+            f"* Has following prefixes after the Emoji: {prefixes}"
+        )
+        sys.exit(1)
