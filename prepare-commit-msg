@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+from typing import List
+
 import json
 import sys
 
@@ -9,38 +11,51 @@ with open(".git/hooks/data.json") as f:
 
 commit_msg_filepath = sys.argv[1]
 
+emojis = [*data.values()]
 prefixes = [*data.keys()]
 
-final_prefixes = [f"{emoji} {prefix}" for prefix, emoji in data.items()]
 
-with open(commit_msg_filepath, "r+") as f:
-    content = f.read()
-
+def get_emoji_from_prefix(prefix: str):
+    """-----------------------------------------------------------------------------
+    Extracts emoji from elojis dict.
+    -----------------------------------------------------------------------------"""
     try:
-        prefix = content.split(":")[0]
-    except IndexError:
-        print(
-            "The commit message must follow the following format: [prefix]: [message]"
-        )
-        sys.exit(1)
-
-    if prefix in final_prefixes:
-        sys.exit(0)
-
-    try:
-        emoji = data[prefix]
-
-        if prefix not in prefixes or emoji not in prefix:
-            pass
-
-        f.seek(0, 0)
-
-        f.write(f"{emoji} {content}")
-
+        return data[prefix]
     except KeyError as e:
         print(f"Unknown prefix: {prefix}")
         sys.exit(1)
 
-    except Exception as e:
-        print(f"Error: {e.__class__}")
+
+def parse_prefixes(prefixes: str) -> List[str]:
+    """-----------------------------------------------------------------------------
+    Converts prefixes in string format into list of strings.
+    -----------------------------------------------------------------------------"""
+    return [p.strip().lower() for p in prefixes.split("+")]
+
+
+with open(commit_msg_filepath, "r+") as f:
+    c = f.read()
+
+    try:
+        prefixes, *content = c.split(":")
+    except IndexError:
+        print(
+            "The commit message must follow the following format: [prefixes]: [message]"
+        )
         sys.exit(1)
+
+    if len(prefixes.split(" ")) == 2:
+        sys.exit(0)
+
+    parsed_prefixes = parse_prefixes(prefixes)
+
+    parsed_emojis = [
+        get_emoji_from_prefix(parsed_prefix) for parsed_prefix in parsed_prefixes
+    ]
+
+    msg_prefixes = "+".join(parsed_prefixes)
+    msg_emojis = "+".join(parsed_emojis)
+    msg_content = ":".join(content)
+
+    f.seek(0, 0)
+    f.write(f"{msg_emojis} {msg_prefixes}: {msg_content}".strip())
