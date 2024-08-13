@@ -53,9 +53,9 @@ with open(commit_msg_filepath, "r+") as f:
         get_emoji_from_prefix(parsed_prefix) for parsed_prefix in parsed_prefixes
     ]
 
-    msg_prefixes = "+".join(parsed_prefixes)
-    msg_emojis = "+".join(parsed_emojis)
-    msg_content = ":".join(content)
+    msg_prefixes = "&".join(parsed_prefixes).strip()
+    msg_emojis = "/".join(parsed_emojis).strip()
+    msg_content = ":".join(content).strip()
 
     f.seek(0, 0)
-    f.write(f"{msg_emojis} {msg_prefixes}: {msg_content}".strip())
+    f.write(f"{msg_emojis} {msg_prefixes}: {msg_content}")
