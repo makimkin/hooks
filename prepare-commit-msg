@@ -53,7 +53,7 @@ with open(commit_msg_filepath, "r+") as f:
         get_emoji_from_prefix(parsed_prefix) for parsed_prefix in parsed_prefixes
     ]
 
-    msg_prefixes = "&".join(parsed_prefixes).strip()
+    msg_prefixes = "+".join(parsed_prefixes).strip()
     msg_emojis = "/".join(parsed_emojis).strip()
     msg_content = ":".join(content).strip()
 
