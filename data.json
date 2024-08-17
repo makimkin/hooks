@@ -1,12 +1,12 @@
 {
     "new": "🟩",
-    "refacto": "🟪",
+    "refacto": "🟥",
     "style": "🟧",
     "data": "⬜️",
     "rework": "🟦",
     "merge": "🟫",
-    "fix": "🟥",
+    "fix": "🟨",
     "breaking": "🔥",
-    "rollback": "❌",
+    "rollback": "🟪",
     "deps": "🟫"
 }
