@@ -1,12 +1,12 @@
 {
-    "new": "💘",
-    "refacto": "💚",
-    "style": "💝",
-    "data": "🤍",
-    "rework": "💙",
-    "merge": "💛",
-    "fix": "🖤",
-    "breaking": "💔",
-    "rollback": "💗",
-    "deps": "🤎"
+    "new": "🟩",
+    "refacto": "🟪",
+    "style": "🟧",
+    "data": "⬜️",
+    "rework": "🟦",
+    "merge": "🟫",
+    "fix": "🟥",
+    "breaking": "🔥",
+    "rollback": "❌",
+    "deps": "🟫"
 }

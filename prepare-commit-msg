@@ -54,7 +54,7 @@ with open(commit_msg_filepath, "r+") as f:
     ]
 
     msg_prefixes = "+".join(parsed_prefixes).strip()
-    msg_emojis = "/".join(parsed_emojis).strip()
+    msg_emojis = "".join(parsed_emojis).strip()
     msg_content = ":".join(content).strip()
 
     f.seek(0, 0)
