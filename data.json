@@ -1,12 +1,12 @@
 {
-    "new": "🟩",
-    "refacto": "🟥",
-    "style": "🟧",
-    "data": "⬜️",
-    "rework": "🟦",
-    "merge": "🟫",
+    "feat": "🟩",
     "fix": "🟨",
-    "breaking": "🔥",
-    "rollback": "🟪",
-    "deps": "🟫"
+    "refactor": "🟥",
+    "style": "🟧",
+    "docs": "⬜️",
+    "perf": "🟦",
+    "test": "🟫",
+    "chore": "🔥",
+    "build": "🟪",
+    "ci": "🟫"
 }
