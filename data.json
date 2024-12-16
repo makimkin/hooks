@@ -1,12 +1,13 @@
 {
-    "feat": "🟩",
     "fix": "🟨",
-    "refactor": "🟥",
-    "style": "🟧",
+    "feat": "🟩",
     "docs": "⬜️",
     "perf": "🟦",
     "test": "🟫",
-    "chore": "🔥",
-    "build": "🟪",
-    "ci": "🟫"
+    "style": "🟧",
+    "revert": "🟪",
+    "refactor": "🟥",
+    "chore": "🔴",
+    "build": "🔴",
+    "ci": "🔴"
 }
