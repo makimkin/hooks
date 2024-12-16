@@ -1,0 +1,46 @@
+{
+  "fix": {
+    "icon": "🟨",
+    "description": "A bug fix"
+  },
+  "feat": {
+    "icon": "🟩",
+    "description": "A new feature"
+  },
+  "docs": {
+    "icon": "⬜️",
+    "description": "Documentation only changes"
+  },
+  "perf": {
+    "icon": "🟦",
+    "description": "A code change that improves performance"
+  },
+  "test": {
+    "icon": "🟫",
+    "description": "Adding missing tests or correcting existing tests"
+  },
+  "style": {
+    "icon": "🟧",
+    "description": "Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)"
+  },
+  "revert": {
+    "icon": "🟪",
+    "description": "Reverts a previous commit"
+  },
+  "refactor": {
+    "icon": "🟥",
+    "description": "A code change that neither fixes a bug nor adds a feature"
+  },
+  "chore": {
+    "icon": "🔴",
+    "description": "Changes to the build process or auxiliary tools and libraries such as documentation generation"
+  },
+  "build": {
+    "icon": "🔴",
+    "description": "Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)"
+  },
+  "ci": {
+    "icon": "🔴",
+    "description": "Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)"
+  }
+}

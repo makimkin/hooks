@@ -1,56 +1,85 @@
 #!/usr/bin/python3
-
-from typing import List
-
 import json
 import sys
 
+from dataclasses import dataclass, field
 
-with open(".git/hooks/data.json") as f:
-    data = json.load(f)
+@dataclass
+class Prefix:
+    name: str
+    icon: str
+    description: str = ""
+
+
+@dataclass
+class Prefixes:
+    prefixes: list[Prefix] = field(default_factory=list)
+
+    @classmethod
+    def load(cls, file) -> "Prefixes":
+        prefixes = cls()
+
+        for name, data in json.load(f).items():
+            p = Prefix(name=name, icon=data["icon"], description=data["description"])
+
+            prefixes.append(p)
+
+        return prefixes
+
+    def __getitem__(self, name: str) -> Prefix:
+        return next(p for p in self.prefixes if p.name == name)
+
+    def append(self, prefix: Prefix):
+        self.prefixes.append(prefix)
+
+    def __str__(self) -> str:
+        available_prefixes_message = "\n".join([f"- {p.name:<10}: {p.description}" for p in self.prefixes])
+
+        return f"\nAvailable prefixes:\n{available_prefixes_message}"
+
+
+with open(".git/hooks/prefixes.json") as f:
+    prefixes = Prefixes.load(f)
 
 commit_msg_filepath = sys.argv[1]
 
-emojis = [*data.values()]
-prefixes = [*data.keys()]
 
-
-def get_emoji_from_prefix(prefix: str):
+def get_icon_from_prefix_name(prefix_name: str):
     """-----------------------------------------------------------------------------
     Extracts emoji from elojis dict.
     -----------------------------------------------------------------------------"""
     try:
-        return data[prefix]
-    except KeyError as e:
-        print(f"Unknown prefix: {prefix}")
+        return prefixes[prefix_name].icon
+    except StopIteration:
+        print(f"Unknown prefix: {prefix_name}\n", "-" * 50,  str(prefixes))
         sys.exit(1)
 
 
-def parse_prefixes(prefixes: str) -> List[str]:
+def parse_prefixes(_prefixes: str) -> list[str]:
     """-----------------------------------------------------------------------------
     Converts prefixes in string format into list of strings.
     -----------------------------------------------------------------------------"""
-    return [p.strip().lower() for p in prefixes.split("+")]
+    return [p.strip().lower() for p in _prefixes.split("+")]
 
 
 with open(commit_msg_filepath, "r+") as f:
-    c = f.read()
+    commit_msg_file_data = f.read()
 
     try:
-        prefixes, *content = c.split(":")
+        commit_msg_file_prefix, *content = commit_msg_file_data.split(":")
     except IndexError:
         print(
             "The commit message must follow the following format: [prefixes]: [message]"
         )
         sys.exit(1)
 
-    if len(prefixes.split(" ")) == 2:
+    if len(commit_msg_file_prefix.split(" ")) == 2:
         sys.exit(0)
 
-    parsed_prefixes = parse_prefixes(prefixes)
+    parsed_prefixes = parse_prefixes(commit_msg_file_prefix)
 
     parsed_emojis = [
-        get_emoji_from_prefix(parsed_prefix) for parsed_prefix in parsed_prefixes
+        get_icon_from_prefix_name(parsed_prefix) for parsed_prefix in parsed_prefixes
     ]
 
     msg_prefixes = "+".join(parsed_prefixes).strip()

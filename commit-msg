@@ -1,26 +1,62 @@
 #!/usr/bin/python3
-
 import json
 import sys
 
+from dataclasses import dataclass, field
 
-with open(".git/hooks/data.json") as f:
-    data = json.load(f)
 
-emojis = [*data.values()]
-prefixes = [*data.keys()]
+@dataclass
+class Prefix:
+    name: str
+    icon: str
+    description: str = ""
+
+
+@dataclass
+class Prefixes:
+    prefixes: list[Prefix] = field(default_factory=list)
+
+    @classmethod
+    def load(cls, file) -> "Prefixes":
+        prefixes = cls()
+
+        for name, data in json.load(f).items():
+            p = Prefix(name=name, icon=data["icon"], description=data["description"])
+
+            prefixes.append(p)
+
+        return prefixes
+
+    def __getitem__(self, name: str) -> Prefix:
+        return next(p for p in self.prefixes if p.name == name)
+
+    def append(self, prefix: Prefix):
+        self.prefixes.append(prefix)
+
+    @property
+    def icons(self) -> list[str]:
+        return [p.icon for p in self.prefixes]
+
+    def __str__(self) -> str:
+        available_prefixes_message = "\n".join([f"- {p.name:<10}: {p.description}" for p in self.prefixes])
+
+        return f"\nAvailable prefixes:\n{available_prefixes_message}"
+
+
+with open(".git/hooks/prefixes.json") as f:
+    prefixes = Prefixes.load(f)
 
 commit_msg_filepath = sys.argv[1]
 
 with open(commit_msg_filepath, "r") as f:
-    content = f.read()
+    commit_msg_file_content = f.read()
 
-    if content[0] not in emojis:
+    if commit_msg_file_content[0] not in prefixes.icons:
         print(
-            f"You entered a wrong message for the commit: {content}\n"
+            f"You entered a wrong message for the commit: {commit_msg_file_content}\n"
             f"The commit message must satisfy:\n"
-            f"* Start with an Emoji from the list: {emojis}\n"
-            f"* Has following prefixes after the Emoji: {prefixes}"
+            f"* Start with an Icon from the list: {prefixes.icons}\n"
             f"* Multiple prefixes can be indicated via + separator"
+            f"* Has following prefixes after the Emoji:\n{prefixes}"
         )
         sys.exit(1)
