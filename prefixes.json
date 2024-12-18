@@ -1,27 +1,27 @@
 {
   "fix": {
     "icon": "🟨",
-    "description": "A bug fix"
+    "description": "This type is used when fixing a bug or issue in the code."
   },
   "feat": {
     "icon": "🟩",
-    "description": "A new feature"
+    "description": "This type is used when adding a new feature or functionality to the project."
   },
   "docs": {
     "icon": "⬜️",
-    "description": "Documentation only changes"
+    "description": "This type is for changes related to documentation only. This includes updates to README files, comments in code, etc."
   },
   "perf": {
     "icon": "🟦",
-    "description": "A code change that improves performance"
+    "description": "This type is used when making improvements related to performance optimizations."
   },
   "test": {
     "icon": "🟫",
-    "description": "Adding missing tests or correcting existing tests"
+    "description": "This type is for commits related to adding or modifying tests (unit, integration, or UI tests)."
   },
   "style": {
     "icon": "🟧",
-    "description": "Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)"
+    "description": "This type applies to changes that do not affect the functionality of the code, such as formatting changes (e.g., indentation, whitespace, or semicolons)."
   },
   "revert": {
     "icon": "🟪",
@@ -33,7 +33,7 @@
   },
   "chore": {
     "icon": "🔴",
-    "description": "Changes to the build process or auxiliary tools and libraries such as documentation generation"
+    "description": "This type is for general maintenance tasks, such as updating dependencies, build scripts, or configuration files. It’s used when changes don’t impact the app's functionality or code quality."
   },
   "build": {
     "icon": "🔴",
