@@ -8,7 +8,7 @@
     "description": "This type is used when adding a new feature or functionality to the project."
   },
   "docs": {
-    "icon": "⬜️",
+    "icon": "📑",
     "description": "This type is for changes related to documentation only. This includes updates to README files, comments in code, etc."
   },
   "perf": {
