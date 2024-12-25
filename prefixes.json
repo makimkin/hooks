@@ -1,46 +1,46 @@
 {
   "fix": {
-    "icon": "🟨",
+    "icon": "🍒",
     "description": "This type is used when fixing a bug or issue in the code."
   },
   "feat": {
-    "icon": "🟩",
+    "icon": "🍆",
     "description": "This type is used when adding a new feature or functionality to the project."
   },
   "docs": {
-    "icon": "📑",
+    "icon": "🥝",
     "description": "This type is for changes related to documentation only. This includes updates to README files, comments in code, etc."
   },
   "perf": {
-    "icon": "🟦",
+    "icon": "🌶️",
     "description": "This type is used when making improvements related to performance optimizations."
   },
   "test": {
-    "icon": "🟫",
+    "icon": "🍇",
     "description": "This type is for commits related to adding or modifying tests (unit, integration, or UI tests)."
   },
   "style": {
-    "icon": "🟧",
+    "icon": "🍑",
     "description": "This type applies to changes that do not affect the functionality of the code, such as formatting changes (e.g., indentation, whitespace, or semicolons)."
   },
   "revert": {
-    "icon": "🟪",
-    "description": "Reverts a previous commit"
+    "icon": "🫐",
+    "description": "This type is used when reverting a commit."
   },
   "refactor": {
-    "icon": "🟥",
-    "description": "A code change that neither fixes a bug nor adds a feature"
+    "icon": "🍓",
+    "description": "This type is used when changing the code structure or logic without changing the external behavior of the code."
   },
   "chore": {
-    "icon": "🔴",
+    "icon": "🍋",
     "description": "This type is for general maintenance tasks, such as updating dependencies, build scripts, or configuration files. It’s used when changes don’t impact the app's functionality or code quality."
   },
   "build": {
-    "icon": "🔴",
-    "description": "Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)"
+    "icon": "🍉",
+    "description": "This type is used for changes related to the build system or external dependencies, such as adding a package or modifying the build process."
   },
   "ci": {
-    "icon": "🔴",
-    "description": "Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)"
+    "icon": "🥭",
+    "description": "This type is used for changes related to the CI pipeline (e.g., Travis, CircleCI, Jenkins), such as modifying configuration files or CI scripts."
   }
 }
