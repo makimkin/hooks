@@ -12,7 +12,7 @@
     "description": "This type is for changes related to documentation only. This includes updates to README files, comments in code, etc."
   },
   "perf": {
-    "icon": "🌶️",
+    "icon": "🍎",
     "description": "This type is used when making improvements related to performance optimizations."
   },
   "test": {
